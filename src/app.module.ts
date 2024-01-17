@@ -17,6 +17,7 @@ import { TagModel } from "./entity/tag.entity";
       UserModel,
       ProfileModel,
       PostModel,
+      TagModel,
     ]),
     // 테이블 생성을 위한 것
     TypeOrmModule.forRoot({
