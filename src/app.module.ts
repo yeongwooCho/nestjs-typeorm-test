@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { myDatabaseInfo } from '../my_settings';
 import { UserModel } from './entity/user.entity';
 import { StudentModel, TeacherModel } from "./entity/person.entity";
+import { BookModel, CarModel } from "./entity/inheritance.entity";
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { StudentModel, TeacherModel } from "./entity/person.entity";
       username: myDatabaseInfo.username,
       password: myDatabaseInfo.password,
       database: myDatabaseInfo.database,
-      entities: [UserModel, StudentModel, TeacherModel],
+      entities: [UserModel, StudentModel, TeacherModel, BookModel, CarModel],
       synchronize: true,
     }),
   ],
