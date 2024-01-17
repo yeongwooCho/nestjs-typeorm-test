@@ -9,23 +9,23 @@ import { PostModel } from "./entity/post.entity";
 export class AppController {
   constructor(
     @InjectRepository(UserModel)
-    private readonly userModelRepository: Repository<UserModel>,
+    private readonly userRepository: Repository<UserModel>,
     @InjectRepository(ProfileModel)
-    private readonly profileModelRepository: Repository<ProfileModel>,
+    private readonly profileRepository: Repository<ProfileModel>,
     @InjectRepository(PostModel)
-    private readonly postModelRepository: Repository<PostModel>,
+    private readonly postRepository: Repository<PostModel>,
   ) {}
 
   @Post('users')
   async postUsers() {
-    return this.userModelRepository.save({
+    return this.userRepository.save({
       // title: 'title',
     });
   }
 
   @Get('users')
   async getUsers() {
-    return await this.userModelRepository.find({
+    return await this.userRepository.find({
       relations: {
         profile: true,
         posts: true,
@@ -35,12 +35,12 @@ export class AppController {
 
   @Patch('users/:id')
   async patchUsers(@Param('id') id: string) {
-    const user = await this.userModelRepository.findOne({
+    const user = await this.userRepository.findOne({
       where: {
         id: id,
       },
     })
-    return await this.userModelRepository.save({
+    return await this.userRepository.save({
       ...user,
       // title: user.title + '0',
     })
@@ -48,11 +48,11 @@ export class AppController {
 
   @Post('user/profile')
   async createUserAndProfile() {
-    const user = await this.userModelRepository.save({
+    const user = await this.userRepository.save({
       email: 'asdf@codefactory.ai',
     })
 
-    const profile = await this.profileModelRepository.save({
+    await this.profileRepository.save({
       user,
       profileImg: 'asdf.jpg'
     })
@@ -62,15 +62,15 @@ export class AppController {
 
   @Post('user/post')
   async createUserAndPosts() {
-    const user = await this.userModelRepository.save({
+    const user = await this.userRepository.save({
       email: 'protuser@codefactory.ai',
     })
 
-    await this.postModelRepository.save({
+    await this.postRepository.save({
       author: user,
       title: 'post 1',
     })
-    await this.postModelRepository.save({
+    await this.postRepository.save({
       author: user,
       title: 'post 2',
     })
