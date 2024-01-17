@@ -2,12 +2,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  Generated, OneToOne,
+  Generated, OneToMany, OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   VersionColumn
 } from "typeorm";
 import { ProfileModel } from "./profile.entity";
+import { PostModel } from "./post.entity";
 
 export enum Role {
   USER = "user",
@@ -21,6 +22,12 @@ export class UserModel {
     (profile) => profile.user
   )
   profile: ProfileModel;
+
+  @OneToMany(
+    () => PostModel,
+    (post) => post.author
+  )
+  posts: PostModel[];
 
   // @PrimaryGeneratedColumn() // 자동으로 +1 아이디 생성
   // @PrimaryColumn() // 직접 생성할 primary key

@@ -7,6 +7,7 @@ import { UserModel } from './entity/user.entity';
 import { StudentModel, TeacherModel } from "./entity/person.entity";
 import { AirplaneModel, BookModel, CarModel, ComputerModel, SingleBaseModel } from "./entity/inheritance.entity";
 import { ProfileModel } from "./entity/profile.entity";
+import { PostModel } from "./entity/post.entity";
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { ProfileModel } from "./entity/profile.entity";
         ComputerModel,
         AirplaneModel,
         ProfileModel,
+        PostModel,
       ],
       synchronize: true,
     }),
