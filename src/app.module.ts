@@ -11,7 +11,10 @@ import { ProfileModel } from "./entity/profile.entity";
 @Module({
   imports: [
     // CRUD 를 위한 것
-    TypeOrmModule.forFeature([UserModel]),
+    TypeOrmModule.forFeature([
+      UserModel,
+      ProfileModel,
+    ]),
     // 테이블 생성을 위한 것
     TypeOrmModule.forRoot({
       type: 'postgres',
