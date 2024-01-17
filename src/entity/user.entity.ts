@@ -2,11 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  Generated,
+  Generated, OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   VersionColumn
 } from "typeorm";
+import { ProfileModel } from "./profile.entity";
 
 export enum Role {
   USER = "user",
@@ -15,6 +16,12 @@ export enum Role {
 
 @Entity()
 export class UserModel {
+  @OneToOne(
+    ()=> ProfileModel,
+    (profile) => profile.user
+  )
+  profile: ProfileModel;
+
   // @PrimaryGeneratedColumn() // 자동으로 +1 아이디 생성
   // @PrimaryColumn() // 직접 생성할 primary key
   @PrimaryGeneratedColumn("uuid") // uuid 자동 생성
