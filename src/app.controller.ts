@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserModel } from './entity/user.entity';
 import { Repository } from 'typeorm';
 import { ProfileModel } from "./entity/profile.entity";
+import { PostModel } from "./entity/post.entity";
 
 @Controller()
 export class AppController {
@@ -11,6 +12,8 @@ export class AppController {
     private readonly userModelRepository: Repository<UserModel>,
     @InjectRepository(ProfileModel)
     private readonly profileModelRepository: Repository<ProfileModel>,
+    @InjectRepository(PostModel)
+    private readonly postModelRepository: Repository<PostModel>,
   ) {}
 
   @Post('users')
@@ -25,6 +28,7 @@ export class AppController {
     return await this.userModelRepository.find({
       relations: {
         profile: true,
+        posts: true,
       }
     });
   }
@@ -51,6 +55,24 @@ export class AppController {
     const profile = await this.profileModelRepository.save({
       user,
       profileImg: 'asdf.jpg'
+    })
+
+    return user;
+  }
+
+  @Post('user/post')
+  async createUserAndPosts() {
+    const user = await this.userModelRepository.save({
+      email: 'protuser@codefactory.ai',
+    })
+
+    await this.postModelRepository.save({
+      author: user,
+      title: 'post 1',
+    })
+    await this.postModelRepository.save({
+      author: user,
+      title: 'post 2',
     })
 
     return user;

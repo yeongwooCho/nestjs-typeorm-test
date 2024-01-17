@@ -15,6 +15,7 @@ import { PostModel } from "./entity/post.entity";
     TypeOrmModule.forFeature([
       UserModel,
       ProfileModel,
+      PostModel,
     ]),
     // 테이블 생성을 위한 것
     TypeOrmModule.forRoot({
