@@ -8,6 +8,7 @@ import { StudentModel, TeacherModel } from "./entity/person.entity";
 import { AirplaneModel, BookModel, CarModel, ComputerModel, SingleBaseModel } from "./entity/inheritance.entity";
 import { ProfileModel } from "./entity/profile.entity";
 import { PostModel } from "./entity/post.entity";
+import { TagModel } from "./entity/tag.entity";
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { PostModel } from "./entity/post.entity";
         AirplaneModel,
         ProfileModel,
         PostModel,
+        TagModel,
       ],
       synchronize: true,
     }),
