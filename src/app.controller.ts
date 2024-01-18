@@ -21,40 +21,49 @@ export class AppController {
 
   @Post('users')
   async postUsers() {
-    return this.userRepository.save({
-      // title: 'title',
-    });
+    for (let i = 0; i < 100; i++) {
+      await this.userRepository.save({
+        email: `user-${i}@google.com`
+      });
+    }
   }
 
   @Get('users')
   async getUsers() {
     return await this.userRepository.find({
-      select: {
-        id: true,
-        createdAt: true,
-        updatedAt: true,
-        version: true,
-        profile: {
-          profileImg: true
-        }
-      },
       where: {},
-      relations: {
-        profile: true,
-      },
-      order: {
-        id: "ASC",
-      },
-      skip: 1,
-      take: 2,
     });
   }
+
+  // @Get('users')
+  // async getUsers() {
+  //   return await this.userRepository.find({
+  //     select: {
+  //       id: true,
+  //       createdAt: true,
+  //       updatedAt: true,
+  //       version: true,
+  //       profile: {
+  //         profileImg: true
+  //       }
+  //     },
+  //     where: {},
+  //     relations: {
+  //       profile: true,
+  //     },
+  //     order: {
+  //       id: "ASC",
+  //     },
+  //     skip: 1,
+  //     take: 2,
+  //   });
+  // }
 
   @Patch('users/:id')
   async patchUsers(@Param('id') id: string) {
     const user = await this.userRepository.findOne({
       where: {
-        id: id,
+        id: +id,
       },
     })
     return await this.userRepository.save({

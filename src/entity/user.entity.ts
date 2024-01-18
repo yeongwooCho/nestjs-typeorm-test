@@ -40,8 +40,8 @@ export class UserModel {
 
   // @PrimaryGeneratedColumn() // 자동으로 +1 아이디 생성
   // @PrimaryColumn() // 직접 생성할 primary key
-  @PrimaryGeneratedColumn("uuid") // uuid 자동 생성
-  id: string;
+  @PrimaryGeneratedColumn() // uuid 자동 생성
+  id: number;
 
   @Column()
   email: string;
