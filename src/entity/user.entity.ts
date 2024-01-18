@@ -2,7 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  Generated, OneToMany, OneToOne,
+  Generated, JoinColumn, OneToMany, OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   VersionColumn
@@ -25,6 +25,7 @@ export class UserModel {
       eager: true,
       // 저장할때 relation을 한번에 같이 저장 가능
       cascade: true,
+      nullable: false,
     }
   )
   profile: ProfileModel;
