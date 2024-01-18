@@ -25,9 +25,11 @@ export class UserModel {
       eager: true,
       // 저장할때 relation을 한번에 같이 저장 가능
       cascade: true,
-      nullable: false,
+      nullable: true,
+      onDelete: "CASCADE",
     }
   )
+  @JoinColumn()
   profile: ProfileModel;
 
   @OneToMany(

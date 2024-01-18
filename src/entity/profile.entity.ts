@@ -11,7 +11,6 @@ export class ProfileModel {
     ()=> UserModel,
     (user)=> user.profile
   )
-  @JoinColumn()
   user: UserModel
 
   @Column()
