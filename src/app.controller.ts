@@ -30,6 +30,92 @@ export class AppController {
     private readonly tagRepository: Repository<TagModel>,
   ) {}
 
+  @Post('sample')
+  async sample() {
+    // // 모델에 해당되는 객체 생성
+    // const user1 = this.userRepository.create({
+    //   email: 'test@codefactory.ai',
+    // })
+    //
+    // 모델에 해당하는 객체 생성 및 저장
+    // const user2 = this.userRepository.save({
+    //   email: 'test@codefactory.ai',
+    // })
+
+    // 입력된 값을 기반으로 DB 에 있는 값을 불러오고
+    // 추가 입력된 값으로 DB에서 가져온 값을 대체함.
+    // 저장하지는 않음
+    // return await this.userRepository.preload({
+    //   id: 102,
+    //   email: 'codefactory@naver.com',
+    // })
+
+    // // 삭제하기
+    // await this.userRepository.delete(101);
+
+    // 값을 증가 시킴
+    // await this.userRepository.increment(
+    //   {
+    //     id: 20
+    //   },
+    //   'count',
+    //   2
+    // );
+
+    // // 값을 감소 시킴
+    // await this.userRepository.decrement(
+    //   {
+    //     id: 1
+    //   },
+    //   'count',
+    //   2
+    // );
+
+    // // 조건에 맞는 항목 갯수 세아리기
+    // const count = await this.userRepository.count({
+    //   where: {
+    //     email: ILike('%0%'),
+    //   }
+    // })
+
+    // const sum = await this.userRepository.sum(
+    //   'count',
+    //   {
+    //       email: ILike('%9%'),
+    //   }
+    // )
+    // return sum;
+
+    // const average = await this.userRepository.average(
+    //   'count',
+    //   {
+    //     id: LessThan(100),
+    //   })
+    // return average;
+
+    // // 최솟값
+    // const min = await this.userRepository.minimum(
+    //   'count',
+    //   {
+    //     id: LessThan(10),
+    //   }
+    // )
+    // return min
+
+    // const max = await this.userRepository.maximum(
+    //   'count',
+    //   {
+    //     id: MoreThan(10),
+    //   }
+    // )
+    // return max
+
+    const usersAndCount = await this.userRepository.findAndCount({
+      take: 3,
+    })
+    return usersAndCount;
+  }
+
   @Post('users')
   async postUsers() {
     for (let i = 0; i < 100; i++) {

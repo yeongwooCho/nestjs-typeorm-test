@@ -91,4 +91,9 @@ export class UserModel {
   @Column()
   @Generated("uuid")
   additionalId: string;
+
+  @Column({
+    default: 0
+  })
+  count: number;
 }
