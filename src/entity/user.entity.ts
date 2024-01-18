@@ -19,7 +19,13 @@ export enum Role {
 export class UserModel {
   @OneToOne(
     ()=> ProfileModel,
-    (profile) => profile.user
+    (profile) => profile.user,
+    {
+      // find() 실행 할때마다 항상 같이 가져올 relation
+      eager: true,
+      // 저장할때 relation을 한번에 같이 저장 가능
+      cascade: true,
+    }
   )
   profile: ProfileModel;
 

@@ -30,7 +30,7 @@ export class AppController {
   async getUsers() {
     return await this.userRepository.find({
       relations: {
-        profile: true,
+        // profile: true,
         posts: true,
       }
     });
@@ -53,12 +53,15 @@ export class AppController {
   async createUserAndProfile() {
     const user = await this.userRepository.save({
       email: 'asdf@codefactory.ai',
+      profile: {
+        profileImg: 'asdf.jpg'
+      }
     })
 
-    await this.profileRepository.save({
-      user,
-      profileImg: 'asdf.jpg'
-    })
+    // await this.profileRepository.save({
+    //   user,
+    //   profileImg: 'asdf.jpg'
+    // })
 
     return user;
   }
