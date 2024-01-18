@@ -29,10 +29,24 @@ export class AppController {
   @Get('users')
   async getUsers() {
     return await this.userRepository.find({
+      select: {
+        id: true,
+        createdAt: true,
+        updatedAt: true,
+        version: true,
+        profile: {
+          profileImg: true
+        }
+      },
+      where: {},
       relations: {
-        // profile: true,
-        posts: true,
-      }
+        profile: true,
+      },
+      order: {
+        id: "ASC",
+      },
+      skip: 1,
+      take: 2,
     });
   }
 
